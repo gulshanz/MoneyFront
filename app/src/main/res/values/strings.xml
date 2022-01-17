@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MoneyFront</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo">Logo</string>
+    <string name="nav">NAV</string>
+    <string name="_1_year_returns">1 Year Returns:</string>
+    <string name="min_amount">Min Amount</string>
+    <string name="invest">Invest</string>
+</resources>
