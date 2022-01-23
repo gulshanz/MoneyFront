@@ -4,12 +4,12 @@
     <item
         android:id="@+id/mfList"
         android:icon="@drawable/ic_home"
-        android:title="Home"
+        android:title="@string/home"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/portfolio"
         android:icon="@drawable/ic_profile"
-        android:title="Portfolio"
-        app:showAsAction="always" />
+        android:title="@string/portfolio"
+        app:showAsAction="ifRoom" />
 </menu>

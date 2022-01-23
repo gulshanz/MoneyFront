@@ -3,10 +3,13 @@ package com.gulshan.moneyfront.ui.mf_list
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.gulshan.moneyfront.MainActivity
 import com.gulshan.moneyfront.R
 import com.gulshan.moneyfront.data.Mf
 import com.gulshan.moneyfront.databinding.FragmentMfListBinding
@@ -29,7 +32,6 @@ class MfListFragment : Fragment(R.layout.fragment_mf_list), MfAdapter.OnItemClic
         val adapter = MfAdapter(this)
         binding.apply {
             recyclerView.setHasFixedSize(true)
-//            recyclerView.itemAnimator = null
             recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
                 header = MfLoadStateAdapter { adapter.retry() },
                 footer = MfLoadStateAdapter { adapter.retry() }
@@ -54,8 +56,8 @@ class MfListFragment : Fragment(R.layout.fragment_mf_list), MfAdapter.OnItemClic
                     ) {
                         recyclerView.isVisible = false
                         textViewEmpty.isVisible = true
-                    }else{
-                        textViewEmpty.isVisible= false
+                    } else {
+                        textViewEmpty.isVisible = false
                     }
                 }
             }
@@ -64,6 +66,8 @@ class MfListFragment : Fragment(R.layout.fragment_mf_list), MfAdapter.OnItemClic
     }
 
     override fun onItemClick(mf: Mf) {
+        val bundle = bundleOf("name" to mf.Scheme_Name,"family" to mf.Mutual_Fund_Family)
+        findNavController().navigate(R.id.action_mfList_to_mfDeatails, bundle )
     }
 
     override fun onDestroy() {
@@ -71,5 +75,6 @@ class MfListFragment : Fragment(R.layout.fragment_mf_list), MfAdapter.OnItemClic
         super.onDestroy()
         _binding = null
     }
+
 
 }

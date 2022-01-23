@@ -8,22 +8,22 @@
     <fragment
         android:id="@+id/mfList"
         android:name="com.gulshan.moneyfront.ui.mf_list.MfListFragment"
-        android:label="MfList" >
+        android:label="All Mutual Funds">
         <action
             android:id="@+id/action_mfList_to_mfDeatails"
-            app:destination="@id/mfDetails" />
+            app:destination="@id/mfDetails"></action>
         <action
             android:id="@+id/action_mfList_to_portfolio"
             app:destination="@id/portfolio" />
     </fragment>
     <fragment
         android:id="@+id/mfDetails"
-        android:name="com.gulshan.moneyfront.ui.mf_detail.MfDeatails"
+        android:name="com.gulshan.moneyfront.ui.mf_detail.MfDetails"
         android:label="Details"
         tools:layout="@layout/fragment_mf_deatails" />
     <fragment
         android:id="@+id/portfolio"
         android:name="com.gulshan.moneyfront.ui.portfolio.Portfolio"
-        android:label="fragment_portfolio"
+        android:label="@string/portfolio"
         tools:layout="@layout/fragment_portfolio" />
 </navigation>

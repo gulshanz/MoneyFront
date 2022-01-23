@@ -2,6 +2,7 @@ package com.gulshan.moneyfront.ui.portfolio
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -22,18 +23,20 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.gulshan.moneyfront.R
 import androidx.fragment.app.Fragment
 import com.google.android.material.composethemeadapter.MdcTheme
+import com.gulshan.moneyfront.MainActivity
+import com.gulshan.moneyfront.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.atan2
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class Portfolio : Fragment(R.layout.fragment_portfolio) {
@@ -52,6 +55,8 @@ class Portfolio : Fragment(R.layout.fragment_portfolio) {
             }
         }
     }
+
+
 
     @Composable
     fun Portfolio(
@@ -89,11 +94,14 @@ class Portfolio : Fragment(R.layout.fragment_portfolio) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState, true)
+//                .verticalScroll(scrollState, true)
                 .padding(20.dp)
         ) {
 
             BoxWithConstraints(modifier = modifier) {
+                val height = LocalConfiguration.current.screenHeightDp
+                val width = LocalConfiguration.current.screenWidthDp
+
 
                 val sideSize = min(constraints.maxWidth, constraints.maxHeight)
                 val padding = (sideSize * 30) / 100f
@@ -115,8 +123,6 @@ class Portfolio : Fragment(R.layout.fragment_portfolio) {
                         .height(sideSize.dp / 3)
                         .pointerInput(true)
                         {
-
-
                             detectTapGestures {
                                 val clickedAngle = convertTouchEventPointToAngle(
                                     sideSize.toFloat(),
@@ -171,8 +177,6 @@ class Portfolio : Fragment(R.layout.fragment_portfolio) {
                     Text(text = "Current Value")
                     Text(text = currVal, fontWeight = FontWeight.Bold, fontSize = 28.sp)
                 }
-
-
             }
 
             Row(
@@ -199,8 +203,6 @@ class Portfolio : Fragment(R.layout.fragment_portfolio) {
                     textAlign = TextAlign.Center
                 )
             }
-
-
 
             Row(
                 modifier = Modifier
@@ -339,4 +341,16 @@ class Portfolio : Fragment(R.layout.fragment_portfolio) {
     }
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.mfList){
+            activity?.onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
 }

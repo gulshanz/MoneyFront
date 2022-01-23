@@ -7,4 +7,6 @@
     <string name="_1_year_returns">1 Year Returns:</string>
     <string name="min_amount">Min Amount</string>
     <string name="invest">Invest</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="home">Home</string>
 </resources>
